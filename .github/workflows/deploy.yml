@@ -72,5 +72,5 @@ jobs:
       run: ssh taiyaki tar -xf $PROJECT/packed.tar -C $PROJECT/
 
     - name: Starup contianers
-      run: ssh taiyaki sudo docker compose -f $PROJECT/docker-compose.yml up --build
+      run: ssh taiyaki sudo docker compose -f $PROJECT/docker-compose.yml up --build -d
 
