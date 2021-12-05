@@ -1,0 +1,4 @@
+Django>=3.2,<3.3
+psycopg2>=2.9,<2.9.2
+wagtail>=2.15,<2.16
+wagtail-localize==1.0

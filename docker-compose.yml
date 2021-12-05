@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  proxy:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    volumes:
+      - "./proxy/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "sakura-static:/usr/share/nginx/html/static:ro"
+      - "sakura-media:/usr/share/nginx/html/media:ro"
+    depends_on:
+      - "backend"
+  backend:
+    build: "backend"
+    environment:
+      - "DJANGO_SETTINGS_MODULE=cms.settings.production"
+      - "DJANGO_SECRET_KEY=SECRET_DJ_KEY"
+      - "HOSTNAME=SECRET_HOSTNAME"
+      - "DB_HOST=SECRET_DB_HOST"
+      - "DB_NAME=SECRET_DB_NAME"
+      - "DB_USER=SECRET_DB_USER"
+      - "DB_PASS=SECRET_DB_PASS"
+    ports:
+      - "8000"
+    volumes:
+      - "sakura-static:/app/static"
+      - "sakura-media:/app/media"
+    depends_on:
+      - "db"
+  db:
+    image: "postgres:13-alpine"
+    environment:
+      - "POSTGRES_DB=SECRET_DB_NAME"
+      - "POSTGRES_USER=SECRET_DB_USER"
+      - "POSTGRES_PASSWORD=SECRET_DB_PASS"
+    ports:
+      - "5432"
+    volumes:
+      - "sakura-db:/var/lib/postgresql/data"
+
+volumes:
+  sakura-db: {}
+  sakura-static: {}
+  sakura-media: {}

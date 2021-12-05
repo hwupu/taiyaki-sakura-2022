@@ -1,0 +1,72 @@
+name: Deploy to Taiyaki
+
+on:
+  push:
+    branches:
+      - deploy
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PROJECT: ${{ secrets.PROJ_NAME }}
+
+jobs:    
+  deploy:
+    name: Deploy to Taiyaki
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/key
+        chmod 600 ~/.ssh/key
+        cat >>~/.ssh/config <<END
+        Host taiyaki
+          HostName $SSH_HOST
+          User $SSH_USER
+          IdentityFile ~/.ssh/key
+          StrictHostKeyChecking no
+        END
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_KEY: ${{ secrets.SSH_KEY }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+
+    - name: Stop old contianers
+      continue-on-error: true
+      run: ssh taiyaki sudo docker compose -f $PROJECT/docker-compose.yml down
+
+    - name: Fill-in secrets
+      run: sed s/SECRET_DJ_KEY/${{ secrets.DJ_KEY }}/g docker-compose.yml > docker-compose.yml
+    - run: sed s/SECRET_HOSTNAME/${{ secrets.HOSTNAME }}/g docker-compose.yml > docker-compose.yml
+    - run: sed s/SECRET_DB_HOST/${{ secrets.DB_HOST }}/g docker-compose.yml > docker-compose.yml
+    - run: sed s/SECRET_DB_USER/${{ secrets.DB_HOST }}/g docker-compose.yml > docker-compose.yml
+    - run: sed s/SECRET_DB_PASS/${{ secrets.DB_PASS }}/g docker-compose.yml > docker-compose.yml
+
+    - name: Remove old files
+      continue-on-error: true
+      run: ssh taiyaki rm -rf $PROJECT
+
+    - name: Make new folder
+      continue-on-error: true
+      run: ssh taiyaki mkdir -p $PROJECT
+
+    - name: Tar source codes
+      run: tar -czf packed.tar backend proxy docker-compose.yml
+
+    - name: SCP source codes
+      run: scp packed.tar taiyaki:$PROJECT/packed.tar
+
+    - name: Un-tar source codes
+      run: ssh taiyaki tar -xf $PROJECT/packed.tar
+
+    - name: Starup contianers
+      run: ssh taiyaki sudo docker compose -f $PROJECT/docker-compose.yml up --build
+
