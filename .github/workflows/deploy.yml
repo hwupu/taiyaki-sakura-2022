@@ -46,11 +46,14 @@ jobs:
       run: ssh taiyaki sudo docker compose -f $PROJECT/docker-compose.yml down
 
     - name: Fill-in secrets
-      run: sed s/SECRET_DJ_KEY/${{ secrets.DJ_KEY }}/g docker-compose.yml > docker-compose.yml
-    - run: sed s/SECRET_HOSTNAME/${{ secrets.HOSTNAME }}/g docker-compose.yml > docker-compose.yml
-    - run: sed s/SECRET_DB_USER/${{ secrets.DB_USER }}/g docker-compose.yml > docker-compose.yml
-    - run: sed s/SECRET_DB_PASS/${{ secrets.DB_PASS }}/g docker-compose.yml > docker-compose.yml
-
+      run: |
+        cp docker-compose.yml docker-compose2.yml
+        sed s/SECRET_DJ_KEY/${{ secrets.DJ_KEY }}/g docker-compose2.yml | \
+        sed s/SECRET_HOSTNAME/${{ secrets.HOSTNAME }}/g | \
+        sed s/SECRET_DB_USER/${{ secrets.DB_USER }}/g | \
+        sed s/SECRET_DB_PASS/${{ secrets.DB_PASS }}/g > docker-compose.yml
+    - run: cat docker-compose.yml
+    
     - name: Remove old files
       continue-on-error: true
       run: ssh taiyaki rm -rf $PROJECT
