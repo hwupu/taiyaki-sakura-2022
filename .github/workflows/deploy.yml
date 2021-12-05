@@ -31,13 +31,15 @@ jobs:
         Host taiyaki
           HostName $SSH_HOST
           User $SSH_USER
+          Port $SSH_PORT
           IdentityFile ~/.ssh/key
           StrictHostKeyChecking no
         END
       env:
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_PORT: ${{ secrets.SSH_PORT }}
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_KEY: ${{ secrets.SSH_KEY }}
-        SSH_HOST: ${{ secrets.SSH_HOST }}
 
     - name: Stop old contianers
       continue-on-error: true
@@ -46,8 +48,7 @@ jobs:
     - name: Fill-in secrets
       run: sed s/SECRET_DJ_KEY/${{ secrets.DJ_KEY }}/g docker-compose.yml > docker-compose.yml
     - run: sed s/SECRET_HOSTNAME/${{ secrets.HOSTNAME }}/g docker-compose.yml > docker-compose.yml
-    - run: sed s/SECRET_DB_HOST/${{ secrets.DB_HOST }}/g docker-compose.yml > docker-compose.yml
-    - run: sed s/SECRET_DB_USER/${{ secrets.DB_HOST }}/g docker-compose.yml > docker-compose.yml
+    - run: sed s/SECRET_DB_USER/${{ secrets.DB_USER }}/g docker-compose.yml > docker-compose.yml
     - run: sed s/SECRET_DB_PASS/${{ secrets.DB_PASS }}/g docker-compose.yml > docker-compose.yml
 
     - name: Remove old files

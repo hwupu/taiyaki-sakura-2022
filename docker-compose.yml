@@ -16,7 +16,7 @@ services:
       - "DJANGO_SETTINGS_MODULE=cms.settings.production"
       - "DJANGO_SECRET_KEY=SECRET_DJ_KEY"
       - "HOSTNAME=SECRET_HOSTNAME"
-      - "DB_HOST=SECRET_DB_HOST"
+      - "DB_HOST=db"
       - "DB_NAME=SECRET_DB_NAME"
       - "DB_USER=SECRET_DB_USER"
       - "DB_PASS=SECRET_DB_PASS"
