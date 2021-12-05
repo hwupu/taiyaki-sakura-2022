@@ -2,6 +2,7 @@ version: "3.9"
 services:
   proxy:
     image: "nginx:latest"
+    container_name: "sakura-proxy"
     ports:
       - "8080:80"
     volumes:
@@ -12,6 +13,7 @@ services:
       - "backend"
   backend:
     build: "backend"
+    container_name: "sakura-backend"
     environment:
       - "DJANGO_SETTINGS_MODULE=cms.settings.production"
       - "DJANGO_SECRET_KEY=SECRET_DJ_KEY"
@@ -29,6 +31,7 @@ services:
       - "db"
   db:
     image: "postgres:13-alpine"
+    container_name: "sakura-db"
     environment:
       - "POSTGRES_DB=SECRET_DB_NAME"
       - "POSTGRES_USER=SECRET_DB_USER"
