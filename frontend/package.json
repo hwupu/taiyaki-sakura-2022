@@ -54,5 +54,7 @@
     "typescript": "^4.4.3"
   },
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "swiper": "^7.3.1"
+  }
 }
