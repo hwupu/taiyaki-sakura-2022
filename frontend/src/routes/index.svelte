@@ -1,6 +1,23 @@
+<svelte:head>
+	<title>Taiyaki Sakura</title>
+</svelte:head>
+
 <script>
-  import "../style/tailwind.css";
+	import { onMount } from 'svelte';
+	import Navigation from "$lib/navigation.svelte";
+
+	let HeroCarousel;
+	onMount(async () => {
+		const module = await import("$lib/hero-carousel.svelte");
+		HeroCarousel = module.default;
+	});
 </script>
 
-<h1 class="text-purple-400">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="mb-[min(-260px,calc(-115px-20vh))]">
+  <svelte:component this={HeroCarousel}/>
+</div>
+
+<Navigation />
+
+<div class="h-screen"></div>
+<div class="h-screen"></div>

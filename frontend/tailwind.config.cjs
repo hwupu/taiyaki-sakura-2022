@@ -3,7 +3,14 @@ module.exports = {
   purge: ['./src/**/*.svelte'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+			screens: {
+				'hd': '1921px',
+			},
+			maxWidth: {
+				'hd': '1920px',
+			},
+		},
   },
   variants: {
     extend: {},
