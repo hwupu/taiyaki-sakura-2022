@@ -1,9 +1,28 @@
 <script>
 	import { onMount } from 'svelte';
 
+	const animate = (obj, css, reverse) => {
+		const direction = css + (!reverse ? '-enter' : '-leave');
+		const inverseDir = css + (!!reverse ? '-enter' : '-leave');
+		obj.addEventListener('animationend', () => {
+		  obj.classList.remove(inverseDir + '-to');
+			obj.classList.add(direction + '-to');
+			obj.classList.remove(direction);
+			obj.classList.remove(direction + '-active');
+		});
+		obj.classList.remove(inverseDir + '-to');
+		obj.classList.remove(direction + '-to');
+		obj.classList.add(direction);
+		obj.classList.add(direction + '-active');
+	};
+
+	const initAnimation = (obj, css) => {
+		obj.classList.add(css + '-item');
+	};
+
 	onMount(() => {
-	  const logo = document.querySelector('#animated-logo');
-		const ringGroup = document.querySelector('#al-rg');
+		const logo = document.querySelector('#animated-logo');
+		// const ringGroup = document.querySelector('#al-rg');
 		const ring1 = document.querySelector('#al-r1');
 		const ring2 = document.querySelector('#al-r2');
 		const ring3 = document.querySelector('#al-r3');
@@ -11,50 +30,65 @@
 		const ring5 = document.querySelector('#al-r5');
 		const ring6 = document.querySelector('#al-r6');
 		const taiyakiGroup = document.querySelector('#al-tg');
-		const taiyakiBody = document.querySelector('#al-tb');
-		const taiyakiFin = document.querySelector('#al-tf');
+		// const taiyakiBody = document.querySelector('#al-tb');
+		// const taiyakiFin = document.querySelector('#al-tf');
 		const sakuraTop = document.querySelector('#al-st');
 		const sakuraBottom = document.querySelector('#al-sb');
-		const TextGroup = document.querySelector('#al-t');
-		const TextTaiyaki = document.querySelector('#al-tt');
-		const TextSakura = document.querySelector('#al-ts');
+		// const TextGroup = document.querySelector('#al-t');
+		// const TextTaiyaki = document.querySelector('#al-tt');
+		// const TextSakura = document.querySelector('#al-ts');
 
 		let prevRatio = 1;
+		initAnimation(ring1, 'ring');
+		initAnimation(ring2, 'ring');
+		initAnimation(ring3, 'ring');
+		initAnimation(ring4, 'ring');
+		initAnimation(ring5, 'ring');
+		initAnimation(ring6, 'ring');
+		initAnimation(taiyakiGroup, 'taiyaki');
+		initAnimation(sakuraBottom, 'sakura');
+		initAnimation(sakuraTop, 'sakura');
 
-	  const handleInersection = (entries) => {
+		const handleInersection = (entries) => {
 			entries.forEach((entry) => {
-
-				console.log(entry.intersectionRatio);
-				if (entry.intersectionRatio < prevRatio) { // sliding downward
-          if (entry.intersectionRatio < 1) {
-						ringGroup.style.opacity = 0;
-						taiyakiGroup.style.opacity = 0;
+				if (entry.intersectionRatio < prevRatio) {
+					// sliding downward
+					if (entry.intersectionRatio < 1) {
+						animate(taiyakiGroup, 'taiyaki', true);
+						animate(ring1, 'ring', true);
+						animate(ring2, 'ring', true);
+						animate(ring3, 'ring', true);
+						animate(ring4, 'ring', true);
+						animate(ring5, 'ring', true);
+						animate(ring6, 'ring', true);
 					}
-          if (entry.intersectionRatio < 0.5) {
-						sakuraBottom.style.animationDirection = 'normal';
-						sakuraBottom.style.animationPlayState = 'running';
-						sakuraTop.style.animationDirection = 'normal';
-						sakuraTop.style.animationPlayState = 'running';
+					if (entry.intersectionRatio < 0.5) {
+						animate(sakuraBottom, 'sakura');
+						animate(sakuraTop, 'sakura');
 					}
-				} else if (entry.intersectionRatio > prevRatio) { // sliding upward
+				} else if (entry.intersectionRatio > prevRatio) {
+					// sliding upward
 					if (entry.intersectionRatio > 0.4) {
-						ringGroup.style.opacity = 1;
-						taiyakiGroup.style.opacity = 1;
-						sakuraBottom.style.animationDirection = 'reverse';
-						sakuraBottom.style.animationPlayState = 'running';
-						sakuraTop.style.animationDirection = 'reverse';
-						sakuraTop.style.animationPlayState = 'running';
+						animate(ring1, 'ring');
+						animate(ring2, 'ring');
+						animate(ring3, 'ring');
+						animate(ring4, 'ring');
+						animate(ring5, 'ring');
+						animate(ring6, 'ring');
+						animate(taiyakiGroup, 'taiyaki');
+						animate(sakuraBottom, 'sakura', true);
+						animate(sakuraTop, 'sakura', true);
 					}
 				}
 
 				prevRatio = entry.intersectionRatio;
-	  	});
+			});
 		};
 		const options = {
-      threshold: [ 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.999, 1 ]
-		}
+			threshold: [0.4, 0.999, 1],
+		};
 		const observer = new IntersectionObserver(handleInersection, options);
-	  observer.observe(logo)
+		observer.observe(logo);
 	});
 </script>
 
@@ -114,7 +148,7 @@
 			}
 		</style>
 	</defs>
-	<g id="al-rg" class="transition-opacity">
+	<g id="al-rg">
 		<g id="al-r1">
 			<path
 				class="cls-1"
@@ -340,7 +374,7 @@
 			/>
 		</g>
 	</g>
-	<g id="al-tg" class="transition-opacity">
+	<g id="al-tg">
 		<g id="al-tb">
 			<path
 				class="cls-5"
