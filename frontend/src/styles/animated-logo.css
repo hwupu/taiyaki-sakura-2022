@@ -1,0 +1,74 @@
+/* #al-r1, #al-r2, #al-r3, #al-r4, #al-r5, #al-r6 { */
+ring-enter {
+	transform-origin: 130px 128px;
+	animation-name: ring-in;
+	animation-duration: 1s;
+	animation-timing-function: ease-in;
+	animation-fill-mode: both;
+}
+#al-r2 { animation-delay: 0.2s; }
+#al-r3 { animation-delay: 0.4s; }
+#al-r4 { animation-delay: 0.6s; }
+#al-r5 { animation-delay: 0.8s; }
+#al-r6 { animation-delay:   1s; }
+
+#al-tg {
+	transform-origin: 155px 175px;
+	animation-name: drift;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: both;
+}
+
+#al-tf {
+	transform-origin: 158px 140px;
+	animation-name: wagfin;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: both;
+	animation-iteration-count: 5;
+}
+
+#al-st, #al-sb {
+	transform-origin: 198px 163px;
+	animation-name: sakura;
+	animation-duration: 1.2s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+	animation-play-state: paused;
+}
+
+#al-sb {
+	transform-origin: 39px 208px;
+	animation-duration: 1s;
+	animation-delay: 0.2s;
+}
+
+@keyframes ring-in {
+	from { transform: rotate(-45deg); opacity: 0; }
+	to   { transform: rotate(  0deg); opacity: 1; }
+}
+@keyframes ring-out {
+	from { transform: rotate( 0deg); opacity: 1; }
+	to   { transform: rotate(45deg); opacity: 0; }
+}
+
+@keyframes drift {
+	from { transform: translate(-20px, 10px) rotate(-10deg); opacity: 0; }
+	50%  { opacity: 1; }
+	75%  { transform: translate( -2px,  0px) rotate(  3deg); }
+	to   { transform: translate(  0px,  0px) rotate(  0deg); }
+}
+
+@keyframes wagfin {
+	from { transform: rotate( 0deg); }
+	25%  { transform: rotate( 5deg); }
+	50%  { transform: rotate( 0deg); }
+	75%  { transform: rotate(-5deg); }
+	to   { transform: rotate( 0deg); }
+}
+
+@keyframes sakura {
+	from { transform: scale(0) rotate( 20deg); opacity: 0; }
+	to   { transform: scale(1) rotate(  0deg); opacity: 1; }
+}

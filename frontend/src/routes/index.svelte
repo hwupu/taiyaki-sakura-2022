@@ -13,7 +13,7 @@
 	});
 </script>
 
-<div class="mb-[min(-260px,calc(-115px-20vh))]">
+<div class="w-full h-screen mb-[min(-260px,calc(-115px-20vh))]">
   <svelte:component this={HeroCarousel}/>
 </div>
 

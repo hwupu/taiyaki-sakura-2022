@@ -16,7 +16,7 @@
 </script>
 
 <Swiper
-	class="w-full h-screen"
+	class="w-full h-full"
 	modules="{[Autoplay, EffectFade, A11y]}"
 	autoplay="{{ delay: 5000 }}"
 	effect="fade"

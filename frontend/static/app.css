@@ -1,3 +1,114 @@
+/* #al-r1, #al-r2, #al-r3, #al-r4, #al-r5, #al-r6 { */
+ring-enter {
+	transform-origin: 130px 128px;
+	-webkit-animation-name: ring-in;
+	        animation-name: ring-in;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
+	-webkit-animation-timing-function: ease-in;
+	        animation-timing-function: ease-in;
+	-webkit-animation-fill-mode: both;
+	        animation-fill-mode: both;
+}
+#al-r2 { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+#al-r3 { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+#al-r4 { -webkit-animation-delay: 0.6s; animation-delay: 0.6s; }
+#al-r5 { -webkit-animation-delay: 0.8s; animation-delay: 0.8s; }
+#al-r6 { -webkit-animation-delay:   1s; animation-delay:   1s; }
+#al-tg {
+	transform-origin: 155px 175px;
+	-webkit-animation-name: drift;
+	        animation-name: drift;
+	-webkit-animation-duration: 2s;
+	        animation-duration: 2s;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
+	-webkit-animation-fill-mode: both;
+	        animation-fill-mode: both;
+}
+#al-tf {
+	transform-origin: 158px 140px;
+	-webkit-animation-name: wagfin;
+	        animation-name: wagfin;
+	-webkit-animation-duration: 0.5s;
+	        animation-duration: 0.5s;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
+	-webkit-animation-fill-mode: both;
+	        animation-fill-mode: both;
+	-webkit-animation-iteration-count: 5;
+	        animation-iteration-count: 5;
+}
+#al-st, #al-sb {
+	transform-origin: 198px 163px;
+	-webkit-animation-name: sakura;
+	        animation-name: sakura;
+	-webkit-animation-duration: 1.2s;
+	        animation-duration: 1.2s;
+	-webkit-animation-timing-function: ease-out;
+	        animation-timing-function: ease-out;
+	-webkit-animation-fill-mode: both;
+	        animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+	        animation-play-state: paused;
+}
+#al-sb {
+	transform-origin: 39px 208px;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
+	-webkit-animation-delay: 0.2s;
+	        animation-delay: 0.2s;
+}
+@-webkit-keyframes ring-in {
+	from { transform: rotate(-45deg); opacity: 0; }
+	to   { transform: rotate(  0deg); opacity: 1; }
+}
+@keyframes ring-in {
+	from { transform: rotate(-45deg); opacity: 0; }
+	to   { transform: rotate(  0deg); opacity: 1; }
+}
+@-webkit-keyframes ring-out {
+	from { transform: rotate( 0deg); opacity: 1; }
+	to   { transform: rotate(45deg); opacity: 0; }
+}
+@keyframes ring-out {
+	from { transform: rotate( 0deg); opacity: 1; }
+	to   { transform: rotate(45deg); opacity: 0; }
+}
+@-webkit-keyframes drift {
+	from { transform: translate(-20px, 10px) rotate(-10deg); opacity: 0; }
+	50%  { opacity: 1; }
+	75%  { transform: translate( -2px,  0px) rotate(  3deg); }
+	to   { transform: translate(  0px,  0px) rotate(  0deg); }
+}
+@keyframes drift {
+	from { transform: translate(-20px, 10px) rotate(-10deg); opacity: 0; }
+	50%  { opacity: 1; }
+	75%  { transform: translate( -2px,  0px) rotate(  3deg); }
+	to   { transform: translate(  0px,  0px) rotate(  0deg); }
+}
+@-webkit-keyframes wagfin {
+	from { transform: rotate( 0deg); }
+	25%  { transform: rotate( 5deg); }
+	50%  { transform: rotate( 0deg); }
+	75%  { transform: rotate(-5deg); }
+	to   { transform: rotate( 0deg); }
+}
+@keyframes wagfin {
+	from { transform: rotate( 0deg); }
+	25%  { transform: rotate( 5deg); }
+	50%  { transform: rotate( 0deg); }
+	75%  { transform: rotate(-5deg); }
+	to   { transform: rotate( 0deg); }
+}
+@-webkit-keyframes sakura {
+	from { transform: scale(0) rotate( 20deg); opacity: 0; }
+	to   { transform: scale(1) rotate(  0deg); opacity: 1; }
+}
+@keyframes sakura {
+	from { transform: scale(0) rotate( 20deg); opacity: 0; }
+	to   { transform: scale(1) rotate(  0deg); opacity: 1; }
+}
 /* Injects Tailwind's base styles & any base styles registered by plugins. */
 /* ! tailwindcss v2.2.19 | MIT License | https://tailwindcss.com */
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
@@ -486,16 +597,6 @@ video {
 	--tw-ring-offset-shadow: 0 0 #0000;
 	--tw-ring-shadow: 0 0 #0000;
 	--tw-shadow: 0 0 #0000;
-	--tw-blur: var(--tw-empty,/*!*/ /*!*/);
-	--tw-brightness: var(--tw-empty,/*!*/ /*!*/);
-	--tw-contrast: var(--tw-empty,/*!*/ /*!*/);
-	--tw-grayscale: var(--tw-empty,/*!*/ /*!*/);
-	--tw-hue-rotate: var(--tw-empty,/*!*/ /*!*/);
-	--tw-invert: var(--tw-empty,/*!*/ /*!*/);
-	--tw-saturate: var(--tw-empty,/*!*/ /*!*/);
-	--tw-sepia: var(--tw-empty,/*!*/ /*!*/);
-	--tw-drop-shadow: var(--tw-empty,/*!*/ /*!*/);
-	--tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 /* custom CSS goes here */
 html {
@@ -583,11 +684,11 @@ body {
 .contents {
 	display: contents;
 }
-.h-screen {
-	height: 100vh;
-}
 .h-full {
 	height: 100%;
+}
+.h-screen {
+	height: 100vh;
 }
 .w-full {
 	width: 100%;
@@ -628,12 +729,10 @@ body {
 .text-center {
 	text-align: center;
 }
-.grayscale {
-	--tw-grayscale: grayscale(100%);
-	filter: var(--tw-filter);
-}
-.filter {
-	filter: var(--tw-filter);
+.transition-opacity {
+	transition-property: opacity;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
 }
 /* custom CSS goes here */
 /* Directive controlling where Tailwind injects responsive variations of utilities.
