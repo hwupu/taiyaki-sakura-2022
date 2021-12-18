@@ -5,7 +5,7 @@
 		const direction = css + (!reverse ? '-enter' : '-leave');
 		const inverseDir = css + (!!reverse ? '-enter' : '-leave');
 		obj.addEventListener('animationend', () => {
-		  obj.classList.remove(inverseDir + '-to');
+			obj.classList.remove(inverseDir + '-to');
 			obj.classList.add(direction + '-to');
 			obj.classList.remove(direction);
 			obj.classList.remove(direction + '-active');
@@ -92,7 +92,17 @@
 	});
 </script>
 
-<svg id="animated-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 237.75 230.87">
+<svg
+	id="animated-logo"
+	role="img"
+	aria-labelledby="al-title al-desc"
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 237.75 230.87"
+>
+	<title id="al-title">Animated logo of Taiyaki Sakura</title>
+	<desc id="al-desc">
+	  The animated version of Taiyaki Sakura logo that has fade in and out effects.
+	</desc>
 	<defs>
 		<style>
 			.cls-1 {

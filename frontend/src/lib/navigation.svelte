@@ -1,4 +1,4 @@
-<nav class="sticky top-[-140px] z-40 max-w-screen-lg mx-auto px-4" aria-label="Main navigation">
+<nav class="sticky top-[-140px] z-40 max-w-screen-lg mx-auto px-4" aria-label="main">
 	<ul class="flex items-end gap-4 text-center">
 		<li class="flex-none order-3 w-[238px] mx-[calc(-1rem-5pt)]">
 			<a href="#">
