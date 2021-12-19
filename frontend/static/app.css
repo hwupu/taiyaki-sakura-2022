@@ -813,6 +813,14 @@ video {
 }
 
 *, ::before, ::after {
+	--tw-translate-x: 0;
+	--tw-translate-y: 0;
+	--tw-rotate: 0;
+	--tw-skew-x: 0;
+	--tw-skew-y: 0;
+	--tw-scale-x: 1;
+	--tw-scale-y: 1;
+	--tw-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 	--tw-border-opacity: 1;
 	border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 	--tw-ring-offset-shadow: 0 0 #0000;
@@ -832,6 +840,8 @@ video {
 html {
 		background-image: url('images/webp/bg-pink-sakura.webp');
 		scroll-behavior: smooth;
+		-ms-scroll-snap-type: y proximity;
+		    scroll-snap-type: y proximity;
 	}
 
 body {
@@ -885,17 +895,33 @@ body {
 	border-width: 0;
 }
 
-.sticky {
-	position: -webkit-sticky;
-	position: sticky;
+.fixed {
+	position: fixed;
 }
 
-.top-\[-140px\] {
-	top: -140px;
+.inset-x-0 {
+	left: 0px;
+	right: 0px;
+}
+
+.bottom-0 {
+	bottom: 0px;
+}
+
+.right-0 {
+	right: 0px;
+}
+
+.top-0 {
+	top: 0px;
 }
 
 .z-40 {
 	z-index: 40;
+}
+
+.z-50 {
+	z-index: 50;
 }
 
 .order-3 {
@@ -918,26 +944,9 @@ body {
 	order: 5;
 }
 
-.mx-auto {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .mx-\[calc\(-1rem-5pt\)\] {
 	margin-left: calc(-1rem - 5pt);
 	margin-right: calc(-1rem - 5pt);
-}
-
-.mt-\[-140px\] {
-	margin-top: -140px;
-}
-
-.mb-\[140px\] {
-	margin-bottom: 140px;
-}
-
-.mb-\[min\(-260px\2c calc\(-115px-20vh\)\)\] {
-	margin-bottom: min(-260px,calc(-115px - 20vh));
 }
 
 .flex {
@@ -968,16 +977,17 @@ body {
 	width: 238px;
 }
 
-.max-w-screen-lg {
-	max-width: 1024px;
-}
-
 .flex-none {
 	flex: none;
 }
 
 .flex-1 {
 	flex: 1 1 0%;
+}
+
+.-translate-y-full {
+	--tw-translate-y: -100%;
+	transform: var(--tw-transform);
 }
 
 .items-end {
@@ -1002,18 +1012,27 @@ body {
 	background-color: rgba(248, 113, 113, var(--tw-bg-opacity));
 }
 
+.bg-red-600 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
+
 .object-cover {
 	-o-object-fit: cover;
 	   object-fit: cover;
 }
 
-.px-4 {
-	padding-left: 1rem;
-	padding-right: 1rem;
+.p-2 {
+	padding: 0.5rem;
 }
 
 .text-center {
 	text-align: center;
+}
+
+.text-white {
+	--tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
 .ring {
@@ -1038,4 +1057,47 @@ body {
 
 /* Directive controlling where Tailwind injects responsive variations of utilities.
    By default Tailwind normally append these at the end of your stylesheet. */
+
+.focus\:translate-y-0:focus {
+	--tw-translate-y: 0px;
+	transform: var(--tw-transform);
+}
+
+@media (min-width: 640px) {
+
+	.sm\:sticky {
+		position: -webkit-sticky;
+		position: sticky;
+	}
+
+	.sm\:top-\[-140px\] {
+		top: -140px;
+	}
+
+	.sm\:mx-auto {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.sm\:mt-\[-140px\] {
+		margin-top: -140px;
+	}
+
+	.sm\:mb-\[140px\] {
+		margin-bottom: 140px;
+	}
+
+	.sm\:mb-\[min\(-260px\2c calc\(-115px-20vh\)\)\] {
+		margin-bottom: min(-260px,calc(-115px - 20vh));
+	}
+
+	.sm\:max-w-screen-lg {
+		max-width: 1024px;
+	}
+
+	.sm\:px-4 {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
 

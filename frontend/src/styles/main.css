@@ -8,6 +8,7 @@
 	html {
 		background-image: url('images/webp/bg-pink-sakura.webp');
 		scroll-behavior: smooth;
+		scroll-snap-type: y proximity;
 	}
 	body {
     @apply max-w-hd mx-auto bg-white hd:border-l hd:border-r hd:border-pink-800 hd:shadow-2xl;
