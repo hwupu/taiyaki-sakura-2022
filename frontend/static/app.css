@@ -813,14 +813,6 @@ video {
 }
 
 *, ::before, ::after {
-	--tw-translate-x: 0;
-	--tw-translate-y: 0;
-	--tw-rotate: 0;
-	--tw-skew-x: 0;
-	--tw-skew-y: 0;
-	--tw-scale-x: 1;
-	--tw-scale-y: 1;
-	--tw-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 	--tw-border-opacity: 1;
 	border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 	--tw-ring-offset-shadow: 0 0 #0000;
@@ -839,6 +831,7 @@ video {
 
 html {
 		background-image: url('images/webp/bg-pink-sakura.webp');
+		scroll-behavior: smooth;
 	}
 
 body {
@@ -935,6 +928,14 @@ body {
 	margin-right: calc(-1rem - 5pt);
 }
 
+.mt-\[-140px\] {
+	margin-top: -140px;
+}
+
+.mb-\[140px\] {
+	margin-bottom: 140px;
+}
+
 .mb-\[min\(-260px\2c calc\(-115px-20vh\)\)\] {
 	margin-bottom: min(-260px,calc(-115px - 20vh));
 }
@@ -947,12 +948,16 @@ body {
 	display: contents;
 }
 
+.h-screen {
+	height: 100vh;
+}
+
 .h-full {
 	height: 100%;
 }
 
-.h-screen {
-	height: 100vh;
+.h-0 {
+	height: 0px;
 }
 
 .w-full {
@@ -975,16 +980,21 @@ body {
 	flex: 1 1 0%;
 }
 
-.transform {
-	transform: var(--tw-transform);
-}
-
 .items-end {
 	align-items: flex-end;
 }
 
 .gap-4 {
 	gap: 1rem;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.bg-white {
+	--tw-bg-opacity: 1;
+	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
 .bg-red-400 {
@@ -1012,10 +1022,16 @@ body {
 	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.transition-opacity {
-	transition-property: opacity;
+.transition {
+	transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+	transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+	transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
+}
+
+.ease-in-out {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* custom CSS goes here */
