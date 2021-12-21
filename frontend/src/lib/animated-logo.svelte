@@ -93,6 +93,7 @@
 </script>
 
 <svg
+	class="hidden sm:block"
 	id="animated-logo"
 	role="img"
 	aria-labelledby="al-title al-desc"

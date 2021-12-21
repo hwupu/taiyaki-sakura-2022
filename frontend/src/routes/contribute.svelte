@@ -1,9 +1,8 @@
 <svelte:head>
-	<title>New page</title>
+	<title>Contribe</title>
 </svelte:head>
 
 <div class="h-screen">
-	<h1>Welcome to Taiyaki Sakura!</h1>
-	<p>New page</p>
+	<h1>Contribe the knowledge of Taiyaki Sakura</h1>
 </div>
 <div class="h-screen" />
