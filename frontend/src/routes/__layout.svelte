@@ -1,42 +1,33 @@
-<script>
-	import '../styles/main.css';
+<script context="module">
+  import { register, init, waitLocale, getLocaleFromHostname } from 'svelte-intl-precompile';
+  import { registerAll } from '$locales';
 
-	import { onMount } from 'svelte';
-	import { navigating, page } from '$app/stores';
-	import Navigation from '$lib/navigation.svelte';
+  // Equivalent to a `register("lang", () => import('$locales/lang'))` fro each lang file in localesRoot.
+  registerAll();
 
-	let HeroCarousel;
-	onMount(async () => {
-		const module = await import('$lib/hero-carousel.svelte');
-		HeroCarousel = module.default;
-	});
-
-	$: hasHero = $page.path.match(/^\/$/) ? true : false;
+  export async function load({session}) {
+    init({
+      fallbackLocale: 'en',
+      //initialLocale: session.acceptedLanguage || getLocaleFromNavigator(),
+			initialLocale: getLocaleFromHostname(/^((en|zh|ja)(-\w\w)?)\./),
+    });
+    await waitLocale(); // awaits for initialLocale language pack to finish loading;
+    return {};
+  }
 </script>
 
-<a
-	href="#sr-nav"
-	class="fixed top-0 inset-x-0 bg-red-600 text-white p-2 -translate-y-full focus:translate-y-0 z-50"
-	>Skip to navigation</a
->
+<script>
+	import '../app.css';
+	import { t } from 'svelte-intl-precompile';
+  import { locale, locales } from 'svelte-intl-precompile'
+</script>
 
-<a
-	href="#sr-main"
-	class="fixed top-0 inset-x-0 bg-red-600 text-white p-2 -translate-y-full focus:translate-y-0 z-50"
-	>Skip to main content</a
->
+<div>{$t('a')}</div>
 
-<div
-	class="w-full overflow-hidden sm:mb-[min(-260px,calc(-115px-20vh))]"
-	class:h-screen={hasHero}
-	class:h-0={!hasHero}
-	style="transition: height ease-in-out 1s; scroll-snap-align: end;"
->
-	<svelte:component this={HeroCarousel} enable={hasHero} />
-</div>
+<select bind:value={$locale}>
+  {#each $locales as locale}
+    <option value={locale}>{locale}</option>
+  {/each}
+</select>
 
-<Navigation />
-
-<main id="sr-main" style="scroll-margin: 110px; scroll-snap-align: start;">
-	<slot />
-</main>
+<slot />

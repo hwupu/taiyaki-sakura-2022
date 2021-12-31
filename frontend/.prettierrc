@@ -1,5 +1,6 @@
 {
+	"useTabs": true,
 	"singleQuote": true,
-	"printWidth": 100,
-	"stylelintIntegration": true
+	"trailingComma": "none",
+	"printWidth": 100
 }

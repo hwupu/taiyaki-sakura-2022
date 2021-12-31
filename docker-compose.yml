@@ -10,7 +10,13 @@ services:
       - "sakura-static:/usr/share/nginx/html/static:ro"
       - "sakura-media:/usr/share/nginx/html/media:ro"
     depends_on:
+      - "frontend"
       - "backend"
+  frontend:
+    build: "frontend"
+    container_name: "sakura-frontend"
+    ports:
+      - "3000"
   backend:
     build: "backend"
     container_name: "sakura-backend"
