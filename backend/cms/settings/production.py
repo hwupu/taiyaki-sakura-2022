@@ -9,6 +9,14 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
 
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  os.environ.get('HOSTNAME'),
+  'http://localhost:3000',
+  'http://localhost:8000',
+)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

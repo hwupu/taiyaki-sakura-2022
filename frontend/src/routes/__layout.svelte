@@ -1,5 +1,5 @@
 <script context="module">
-  import { register, init, waitLocale, getLocaleFromHostname } from 'svelte-intl-precompile';
+  import { register, init, waitLocale, getLocaleFromQueryString } from 'svelte-intl-precompile';
   import { registerAll } from '$locales';
 
   // Equivalent to a `register("lang", () => import('$locales/lang'))` fro each lang file in localesRoot.
@@ -9,7 +9,7 @@
     init({
       fallbackLocale: 'en',
       //initialLocale: session.acceptedLanguage || getLocaleFromNavigator(),
-			initialLocale: getLocaleFromHostname(/^((en|zh|ja)(-\w\w)?)\./),
+			initialLocale: getLocaleFromQueryString('lang'),
     });
     await waitLocale(); // awaits for initialLocale language pack to finish loading;
     return {};
