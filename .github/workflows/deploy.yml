@@ -63,7 +63,7 @@ jobs:
       run: ssh taiyaki mkdir -p $PROJECT
 
     - name: Tar source codes
-      run: tar -czf packed.tar backend proxy docker-compose.yml
+      run: tar -czf packed.tar frontend backend proxy docker-compose.yml
 
     - name: SCP source codes
       run: scp packed.tar taiyaki:$PROJECT/packed.tar
