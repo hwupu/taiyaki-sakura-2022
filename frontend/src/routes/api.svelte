@@ -1,20 +1,16 @@
 <script>
-	import { onMount } from 'svelte';
-
 	let result = undefined;
 
-	onMount(async () => {
-		fetch('http://localhost:8000/api/v2/images')
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-				result = data;
-			})
-			.catch((error) => {
-				console.log(error);
-				return [];
-			});
-	});
+	fetch('http://localhost:8000/api/v2/images')
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			result = data;
+		})
+		.catch((error) => {
+			console.log(error);
+			return [];
+		});
 </script>
 
 {#if result}
