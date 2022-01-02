@@ -13,6 +13,11 @@ backend/static/
 
 # Frontend stuff:
 frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
+frontend/coverage
+frontend/.next/
+frontend/out/
 frontend/build
 frontend/dist
 frontend/.svelte-kit
@@ -24,9 +29,27 @@ frontend/!.env.example
 # Environments
 venv/
 
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Editors
 *.swp
 .idea/
 
-# macOS
+# misc
 .DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
